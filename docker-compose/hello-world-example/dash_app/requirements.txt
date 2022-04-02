@@ -1,0 +1,6 @@
+werkzeug==2.0.0
+dash
+folium
+plotly
+gunicorn
+requests

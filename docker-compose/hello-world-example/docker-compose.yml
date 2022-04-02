@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+
+  api:
+    build: ./api_app
+    container_name: service-api
+    network_mode: default
+    ports:
+      - 5000:5000
+
+  dashboard:
+    build: ./dash_app
+    network_mode: default
+    ports:
+      - 5001:5001
+    environment: 
+      - REQUESTS_URL=http://api:5000/points
+    depends_on:
+      - "api"
+    links:
+      - api
