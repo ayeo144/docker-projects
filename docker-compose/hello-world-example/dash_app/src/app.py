@@ -11,7 +11,7 @@ app = Dash(__name__)
 
 server = app.server
 app.config.suppress_callback_exceptions = True
-app.title = 'Points'
+app.title = "Points"
 
 
 def dash_layout():
@@ -32,16 +32,15 @@ def dash_layout():
     for record in data:
         folium.Marker((record["lat"], record["lon"])).add_to(points_map)
 
-
     layout = html.Div(
         [
             html.Iframe(
-                srcDoc=points_map.get_root().render(), 
-                width="70%", 
+                srcDoc=points_map.get_root().render(),
+                width="70%",
                 height="600",
             ),
         ],
-        style={'textAlign': 'center'},
+        style={"textAlign": "center"},
     )
 
     return layout

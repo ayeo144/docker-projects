@@ -1,21 +1,33 @@
 version: "3.9"
 
+# Here we define the services being run.
 services:
 
+  # This is the API service, the code is stored in the ./api_app directory.
   api:
+
     build: ./api_app
     container_name: service-api
     network_mode: default
     ports:
       - 5000:5000
 
+  # This is the dashboard service, the code is stored in the ./dash_app directory.
   dashboard:
+
     build: ./dash_app
     network_mode: default
     ports:
       - 5001:5001
+
+    # We can define environment variables, for example the URL from the API service
+    # that can be used to request data for the dashboard.
+    # NOTE: the port needs to be the internal container point (the right-hand-side one)!
     environment: 
       - REQUESTS_URL=http://api:5000/points
+
+    # In this case the dashboard depends on the API, so we can define that here and the
+    # the API service is run first.
     depends_on:
       - "api"
     links:

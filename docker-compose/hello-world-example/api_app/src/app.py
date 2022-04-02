@@ -30,7 +30,7 @@ def get_db():
 
 class PointModel(Base):
 
-    __tablename__ = 'points'
+    __tablename__ = "points"
 
     id = Column(Integer, primary_key=True)
     lon = Column(Float)
